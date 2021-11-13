@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %} Posts {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="offset-3 col-6">
+            {% for post in posts %}
+                <h2><a href="{{ url_for('post.post_get',pk=post.id) }}">{{ post.title }}</a></h2>
+                {% if post.pic %}
+                    <img width="500px" src="{{ url_for('static',filename=post.pic)  }} " alt="">
+                {% endif %}
+                <div>
+                    {{ post.body | safe }}
+                </div>
+                <p> Created Time {{ post.created_at }} || Author : {{ post.created_by }} </p>
+                <hr/>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
